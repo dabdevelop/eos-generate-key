@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img src="https://eosfans-static.strahe.com/photo/2018/bc17c8bf-d168-4fdc-b99a-83bea533d752.png?x-oss-process=image/resize,w_1920" style="height:200px;">
+    <img src="https://fibos.io/imgs/logo.png" style="height:100px; display: inline-block;">
 
     <div v-show="show">
       <h3>随机生成私钥</h3>
@@ -29,8 +29,8 @@
         <input type="text" v-model="valiPublicKey">
         <button class="primary" @click="isValidPublic">验证公钥格式</button>
       </div>
-      <p v-if="showPublicTips"><span>验证EOS公钥：</span>{{ valiPublicStatus  ? '正确' : '错误！'}}</p>
-      <p>（验证EOS公钥格式）</p>
+      <p v-if="showPublicTips"><span>验证Fibos公钥：</span>{{ valiPublicStatus  ? '正确' : '错误！'}}</p>
+      <p>（验证Fibos公钥格式）</p>
     </div>
 
     <div style="margin-top: 20px;">
@@ -38,8 +38,8 @@
         <input type="text" v-model="valiPrivateKey">
         <button class="primary" @click="isValidPrivate">验证私钥格式</button>
       </div>
-      <p v-if="showPrivateTips"><span>验证EOS私钥：</span>{{ valiPrivateStatus ? '正确' : '错误！'}}</p>
-      <p>（验证EOS私钥格式）</p>
+      <p v-if="showPrivateTips"><span>验证Fibos私钥：</span>{{ valiPrivateStatus ? '正确' : '错误！'}}</p>
+      <p>（验证Fibos私钥格式）</p>
     </div>
 
     <div class="dialog" v-if="showDialog">
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import ecc from 'eosjs-ecc'
+import fibos from 'fibos.js'
 
 export default {
   name: 'App',
@@ -91,24 +91,24 @@ export default {
       this.showDialog = false
     },
     getPrivateKey () {
-      ecc.randomKey().then(privateKey => {
+      fibos.modules.ecc.randomKey().then(privateKey => {
         this.privateKey = privateKey.toString()
-        this.publicKey = ecc.privateToPublic(this.privateKey)
+        this.publicKey = fibos.modules.ecc.privateToPublic(this.privateKey)
         this.show = true
       })
     },
     getPrivateKeyBySeed () {
-      this.privateKeyBySeed = ecc.seedPrivate(this.seed)
-      this.publicKeyBySeed = ecc.privateToPublic(this.privateKeyBySeed)
+      this.privateKeyBySeed = fibos.modules.ecc.seedPrivate(this.seed)
+      this.publicKeyBySeed = fibos.modules.ecc.privateToPublic(this.privateKeyBySeed)
       this.showSeed = true
     },
     isValidPublic () {
       this.showPublicTips = true
-      this.valiPublicStatus = ecc.isValidPublic(this.valiPublicKey)
+      this.valiPublicStatus = fibos.modules.ecc.isValidPublic(this.valiPublicKey)
     },
     isValidPrivate () {
       this.showPrivateTips = true
-      this.valiPrivateStatus = ecc.isValidPrivate(this.valiPrivateKey)
+      this.valiPrivateStatus = fibos.modules.ecc.isValidPrivate(this.valiPrivateKey)
     }
   }
 }
@@ -127,6 +127,7 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  background-color: #dcdfe6;
 }
 
 input[type='text'] {
