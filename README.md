@@ -1,12 +1,11 @@
-# eos-generate-key
+# fibos-generate-key
 
-> Generation and detection for EOS private key and public key.(用于EOS私钥和公钥生成及检测。)
+> Generation and detection for Fibos private key and public key.(用于Fibos私钥和公钥生成及检测。)
 
 ## Features（功能）
 
-    1. Generate EOS private key and public key.(生成私钥和公钥)。
-    2. Generate EOS private key and public key width seed. (通过助记词生成私钥和公钥。)
-    3. Test and verify private/public key. (用来检测公钥或私钥格式的正确性。)
+    1. Generate Fibos private key and public key.(生成私钥和公钥)。
+    2. Test and verify private/public key. (用来检测公钥或私钥格式的正确性。)
 
 ## Build Setup
 
